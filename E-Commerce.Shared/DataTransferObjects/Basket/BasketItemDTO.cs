@@ -2,8 +2,7 @@
 
 public class BasketItemDTO
 {
-#nullable disable
-    public string Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; init; }
     public string Description { get; init; }
     public string PictureUrl { get; init; }
