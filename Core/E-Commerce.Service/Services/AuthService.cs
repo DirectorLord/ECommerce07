@@ -9,6 +9,9 @@ namespace E_Commerce.Service.Services;
 public class AuthService(UserManager<ApplicationUser> userManager, ITokenService service)
     : IAuthService
 {
+    public async Task<bool> CheckEmailAsync(string email)
+    => await userManager.FindByEmailAsync(email) != null;
+
     public async Task<Result<UserResponse>> LoginAsync(LoginRequest request)
     {
         var user = await userManager.FindByEmailAsync(request.Email);
@@ -38,5 +41,15 @@ public class AuthService(UserManager<ApplicationUser> userManager, ITokenService
         var token = service.GetToken(user, []);
         
         return new UserResponse(user.Email, user.DisplayName, token);
+    }
+
+    Task<UserResponse> IAuthService.LoginAsync(LoginRequest loginRequest)
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<UserResponse> IAuthService.RegisterAsync(RegisterRequest registerRequest)
+    {
+        throw new NotImplementedException();
     }
 }
