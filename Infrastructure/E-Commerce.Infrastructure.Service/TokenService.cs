@@ -25,7 +25,7 @@ public class TokenService(IOptions<JWTOptions> options)
         }
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.key));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        var token = new JwtSecurityToken(claims: claims, issuer: jwt.Issuer, audience: jwt., expires: DateTime.Now.AddDays(jwt.DurationInDays), signingCredentials: creds);
+        var token = new JwtSecurityToken(claims: claims, issuer: jwt.Issuer, audience: jwt.Audience, expires: DateTime.Now.AddDays(jwt.DurationInDays), signingCredentials: creds);
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Service.Abstraction;
+using E_Commerce.Service.Abstraction.Common;
 using E_Commerce.Shared.DataTransferObjects.Auth;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,14 +12,14 @@ public class AuthController(IAuthService auth)
     public async Task<ActionResult<UserResponse>> Register(RegisterRequest request)
     {
         var result = await auth.RegisterAsync(request);
-        return HandleResult(result);
+        return HandleResult(Result<UserResponse>.Ok(result));
     }
 
     [HttpPost("Login")]
     public async Task<ActionResult<UserResponse>> Login(LoginRequest request)
     {
         var result = await auth.LoginAsync(request);
-        return HandleResult(result);
+        return HandleResult(Result<UserResponse>.Ok(result));
     }
     [HttpGet]
     public async Task<ActionResult<bool>> CheckEmail(string email)

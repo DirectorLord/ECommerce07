@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Domain.Entities.Auth;
+using E_Commerce.Domain.Entities.OrderEntities;
 using E_Commerce.Persistence.AuthContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -35,6 +36,17 @@ internal class DBInitializer(StoreDbContext dbContext, AuthDbContext authDbConte
                 if (types != null && types.Any())
                 {
                     dbContext.ProductsTypes.AddRange(types);
+                }
+                await dbContext.SaveChangesAsync();
+            }
+            if (!dbContext.DeliveryMethods.Any())
+            {
+                var TypeData = await File.ReadAllTextAsync(
+                    "@Infrastructure/E-COmmerce.Persistence/DBInitializers/SeedData/delivery.json");
+                var delivery = JsonSerializer.Deserialize<List<DeliveryMethod>>(TypeData);
+                if (delivery != null && delivery.Any())
+                {
+                    dbContext.ProductsTypes.AddRange((IEnumerable<ProductsType>)delivery);
                 }
                 await dbContext.SaveChangesAsync();
             }

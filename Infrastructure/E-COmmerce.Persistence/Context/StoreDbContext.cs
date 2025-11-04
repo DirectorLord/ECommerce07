@@ -1,4 +1,5 @@
-﻿using E_Commerce.Domain.Entities.Products;
+﻿using E_Commerce.Domain.Entities.OrderEntities;
+using E_Commerce.Domain.Entities.Products;
 using System.Reflection;
 
 namespace E_COmmerce.Persistence.Context;
@@ -7,8 +8,11 @@ internal class StoreDbContext(DbContextOptions<StoreDbContext> options)
     : DbContext(options)
 {
     public DbSet<Product> Products { get; set; }
-    public DbSet<ProductsType> ProductsTypes { get; set; }
     public DbSet<ProductBrand> ProductBrands { get; set; }
+    public DbSet<ProductsType> ProductsTypes { get; set; }
+    public DbSet<OrderEntity> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

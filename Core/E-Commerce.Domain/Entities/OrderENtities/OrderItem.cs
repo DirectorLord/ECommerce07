@@ -1,4 +1,4 @@
-﻿namespace E_Commerce.Domain.Entities.OrderENtities;
+﻿namespace E_Commerce.Domain.Entities.OrderEntities;
 
 public class OrderItem
     : Entity<Guid>
