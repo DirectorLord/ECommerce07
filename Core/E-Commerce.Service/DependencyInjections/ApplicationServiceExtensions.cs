@@ -1,4 +1,6 @@
-﻿using E_Commerce.Service.Services;
+﻿using E_Commerce.Service.MappingProfiles;
+using E_Commerce.Service.MappingProfiles.Resolvers;
+using E_Commerce.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,6 +13,9 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IBasketService, BasketService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<DeliveryMethodNameAsyncResolver>();
+        services.AddScoped<DeliveryMethodCostAsyncResolver>();
+        services.AddAutoMapper(typeof(OrderProfile).Assembly);
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();

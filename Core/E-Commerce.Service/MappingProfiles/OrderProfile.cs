@@ -20,4 +20,6 @@ public class OrderProfile
             .ForMember(d => d.PictureUrl, o => o.MapFrom(s => s.Product.PictureUrl));
     }
     //Resolver Task (im cooked)
+    //Added DeliveryMethodCostResolver, DeliveryMethodNameResolver, DeliveryMethodNameAsyncResolver, DeliveryMethodCostAsyncResolver
+    //idk if its working or not tbh
 }
